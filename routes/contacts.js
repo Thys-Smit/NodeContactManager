@@ -47,7 +47,7 @@ router.get('/details/:id', function(req, res, next) {
 /* POST add a contact for a specific user */
 router.post('/user/:id/add', function(req, res, next) {
 
-	// TODO: Validate body of the for required fields
+	// TODO: Validate the body for required fields
 	if (!req.params.id || isNaN(req.params.id)){
 		res.status(400).send('The id is not a number or is not provided');
 		return
