@@ -46,7 +46,7 @@ var msSQLInstance = sql.connect(config.dbConfig, function (err, result) {
 
 var baseUri = '/api/v1'
 // app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use(`${baseUri}/users`, usersRouter);
 app.use(`${baseUri}/contacts`, contactsRouter)
 
 // catch 404 and forward to error handler

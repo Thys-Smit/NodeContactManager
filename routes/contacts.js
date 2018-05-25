@@ -18,32 +18,6 @@ router.get('/all', function(req, res, next) {
 });
 
 
-/* GET all contacts from a specific user */
-router.get('/user/:id/all', function(req, res, next) {
-
-	if (!req.params.id || isNaN(req.params.id)){
-		res.status(400).send('The id is not a number or is not provided');
-		return
-	} 
-
-	var SQLRequest = new sql.Request();
-	SQLRequest.query(`SELECT contactId, name, surname FROM contacts WHERE fkUserId = ${req.params.id}`, (err, result) => {
-		if (err) {
-			res.status(401).send(err);
-		} else {
-			res.status(200).send(result);
-		}
-	});
-
-});
-
-
-/* GET details of a specific contact. */
-router.get('/details/:id', function(req, res, next) {
-	res.send('respond with a resource');
-});
-
-
 /* POST add a contact for a specific user */
 router.post('/user/:id/add', function(req, res, next) {
 
@@ -67,6 +41,32 @@ router.post('/user/:id/add', function(req, res, next) {
 		}
 	});
 
+});
+
+
+/* GET all contacts from a specific user */
+router.get('/user/:id/all', function(req, res, next) {
+
+	if (!req.params.id || isNaN(req.params.id)){
+		res.status(400).send('The id is not a number or is not provided');
+		return
+	} 
+
+	var SQLRequest = new sql.Request();
+	SQLRequest.query(`SELECT contactId, name, surname FROM contacts WHERE fkUserId = ${req.params.id}`, (err, result) => {
+		if (err) {
+			res.status(401).send(err);
+		} else {
+			res.status(200).send(result);
+		}
+	});
+
+});
+
+
+/* GET details of a specific contact. */
+router.get('/details/:id', function(req, res, next) {
+	res.send('respond with a resource');
 });
 
 
