@@ -25,7 +25,7 @@ router.post('/add', function(req, res, next){
 		if (err) {
 			res.status(401).send(err);
 		} else {
-			res.status(200).send(result.returnValue);
+			res.status(200).send(result);
 		}
 	});
 
