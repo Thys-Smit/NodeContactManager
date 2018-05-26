@@ -18,7 +18,7 @@ router.get('/all', function(req, res, next) {
 });
 
 
-/* POST add a contact for a specific user */
+/* POST add a contact for a specific user. (Stored Procedure) */
 router.post('/user/:id/add', function(req, res, next) {
 
 	// TODO: Validate the body for required fields
@@ -28,10 +28,10 @@ router.post('/user/:id/add', function(req, res, next) {
 	} 
 	
 	var SQLRequest = new sql.Request();
-	SQLRequest.input('Name', req.body.name)
-  	SQLRequest.input('Surname', req.body.surname)
-  	SQLRequest.input('CellNumber', req.body.cellNo)
-  	SQLRequest.input('WorkNumber', req.body.work ? req.body.workNo : "")
+	SQLRequest.input('Name', req.body.name);
+  	SQLRequest.input('Surname', req.body.surname);
+  	SQLRequest.input('CellNumber', req.body.cellNo);
+  	SQLRequest.input('WorkNumber', req.body.workNo ? req.body.workNo : "")
   	SQLRequest.input('id', req.params.id)
 	SQLRequest.execute(`sp_AddContact`, (err, result) => {
 		if (err) {
@@ -44,7 +44,7 @@ router.post('/user/:id/add', function(req, res, next) {
 });
 
 
-/* GET all contacts from a specific user */
+/* GET all contacts from a specific user. */
 router.get('/user/:id/all', function(req, res, next) {
 
 	if (!req.params.id || isNaN(req.params.id)){
@@ -84,7 +84,27 @@ router.get('/details/:id', function(req, res, next) {
 });
 
 
-/* PATCH update a contact for a specific user */
+/* DELETE  a contact for a specific user. */
+router.delete('/delete/:id', function(req, res, next){
+
+	if (!req.params.id || isNaN(req.params.id)){
+		res.status(400).send('The id is not a number or is not provided');
+		return
+	} 
+
+	var SQLRequest = new sql.Request();
+	SQLRequest.query(`DELETE FROM contacts WHERE contactId = ${req.params.id}`, (err, result) => {
+		if (err) {
+			res.status(401).send(err);
+		} else {
+			res.status(200).send(result);
+		}
+	});
+
+})
+
+
+/* PATCH update a contact for a specific user. */
 router.patch('/user/:id/update', function(req, res, next) {
 	res.send('api not implemented');
 });

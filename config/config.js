@@ -17,10 +17,9 @@ var dbConfig = {
 
 // var dbConfig = {
 //   user: 'sa',
-//   password: '',
+//   password: '1234',
 //   server: 'localhost\\SQLEXPRESS',
-//   port: '1433',
-//   database: 'BritehouseContactList'
+//   database: 'Britehouse'
 // }
 
 module.exports.dbConfig = dbConfig
