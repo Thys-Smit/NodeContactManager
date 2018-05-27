@@ -101,11 +101,11 @@ router.delete('/delete/:id', function(req, res, next){
 		}
 	});
 
-})
+});
 
 
-/* PATCH update a contact for a specific user. */
-router.patch('/user/:id/update', function(req, res, next) {
+/* PUT update a contact for a specific user. */
+router.put('/user/:id/update', function(req, res, next) {
 	res.send('api not implemented');
 });
 
