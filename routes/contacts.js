@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sql = require('mssql');
 
+//TODO: Wrap endpoint logic in controller modules
 
 /* GET all contacts from all users. */
 router.get('/all', function(req, res, next) {
